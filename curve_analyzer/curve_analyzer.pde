@@ -1,7 +1,7 @@
 import processing.opengl.*;
 
 PVector p;
-float bg = 0, fg = 255, bg_op = 1, str_op = 10;
+float bg = 0, fg = 255, bg_op = 1, str_op = 1;
 ArrayList world;
 int num_parts = 100;
 AudioAnalyzer audio;
@@ -31,7 +31,7 @@ void Init(){
     world.add(new CurvePart(new PVector(px, py), width, height));
   }
   //create audio analyzer
-  audio = new AudioAnalyzer(this, "../audio/Physika.wav", num_parts);  
+  audio = new AudioAnalyzer(this, "../audio/Space_Time.wav", num_parts);  
   //set stroke off
   noStroke();
   //set the foreground color with opacity
@@ -46,11 +46,11 @@ void Update(){
   translate(width/2, height/2);  
   CurvePart pt;
   for (int i = 0; i < world.size(); i++){
-    pt = (CurvePart)world.get(i);    
-    if (audiobuffer[i] > 0.5){
+    pt = (CurvePart)world.get(i);
+    if (audiobuffer[i] > 0.5){        
       pt.Update(frameCount);
-    }    
-    Render(pt.Point());
+    }
+    Render(pt.Point());   
     //println(Arrays.toString(audiobuffer));
   }
 }
