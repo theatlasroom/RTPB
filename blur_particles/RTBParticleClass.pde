@@ -1,7 +1,8 @@
 class RTBParticle {
   //simple motion particle class for the RTBlur application
   PVector origin, location, target, vel, accel;
-   float min_w, min_h, max_w, max_h; 
+  float min_w, min_h, max_w, max_h; 
+  int divisor = 1; 
   //needed?
   //PVector accel, vel;
     
@@ -12,10 +13,10 @@ class RTBParticle {
     //this.target = new PVector(origin.x, origin.y);
     this.vel = new PVector(0, 0); 
     this.accel = new PVector(0, 0); 
-    min_w = -width/2; 
-    min_h = -height/2;
-    max_w = width/2;
-    max_h = height/2;    
+    min_w = -width/divisor; 
+    min_h = -height/divisor;
+    max_w = width/divisor;
+    max_h = height/divisor;    
   } 
   
   void AddForce(PVector f){

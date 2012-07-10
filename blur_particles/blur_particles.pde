@@ -21,7 +21,7 @@ void setup(){
   minim = new Minim(this);
   //specify 512 for the length of the sample buffers
   //the default buffer size is 1024
-  song = minim.loadFile("../../../the_drip.mp3", 512);
+  song = minim.loadFile("../audio/Reprise.wav", 512);
   song.play();
   // an FFT needs to know how 
   // long the audio buffers it will be analyzing are
@@ -36,7 +36,6 @@ void draw(){
   //create an alpha layer
   /*fill(bg, 1);
   rect(0, 0, width, height);*/
-  //rfilter();
   /***FFT CODE***/
   fft.forward(song.mix);
   /***FFT CODE***/

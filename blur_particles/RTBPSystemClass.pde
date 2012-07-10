@@ -8,7 +8,7 @@ class RTBPSystem {
   //the system updates every 4 frames, allowing the particles to return to their initial position
   int num_particles = 0;
   //special vars for circle implemenetation
-  float angle = 0, r = width/10;
+  float angle = 0, r = width/100;
   //special vars
   ArrayList system;
   

@@ -22,7 +22,7 @@ void setup(){
  
   // specify 512 for the length of the sample buffers
   // the default buffer size is 1024
-  song = minim.loadFile("../../../the_drip.mp3", 512);
+  song = minim.loadFile("../audio/Reprise.wav", 512);
   //song.play();
  
   // an FFT needs to know how 
@@ -42,7 +42,7 @@ void draw(){
 /*  fill(bg, 15);
   rect(0, 0, width, height); */
   /***FFT CODE***/
-  /*fft.forward(song.mix);*/
+  fft.forward(song.mix);
   //stroke(255);
   //line(width/2, 150 + song.right.get(0)*50, 400+1, 150 + song.right.get(0)*50);
   /***FFT CODE***/

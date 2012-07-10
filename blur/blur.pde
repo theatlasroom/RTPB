@@ -1,3 +1,5 @@
+
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 Minim minim;
@@ -20,7 +22,7 @@ void setup(){
  
   // specify 512 for the length of the sample buffers
   // the default buffer size is 1024
-  song = minim.loadFile("../../../../the_drip.mp3", 512);
+  song = minim.loadFile("../audio/Reprise.wav", 512);
   song.play();
  
   // an FFT needs to know how 
