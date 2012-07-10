@@ -20,8 +20,8 @@ class CurvePart {
   }
   
   void Update(int frame){
-    //if (frame % this.regen_rate == 0)
-    //  this.Regen();
+    if (frame % this.regen_rate == 0)
+      this.Regen();
     this.Calculate();  //calculate the new point    
   }
   

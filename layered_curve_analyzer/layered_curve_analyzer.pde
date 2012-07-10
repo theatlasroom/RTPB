@@ -1,67 +1,17 @@
 import processing.opengl.*;
+import com.nootropic.processing.layers.*;
 
-PVector p;
-float bg = 0, fg = 255, bg_op = 1, str_op = 10;
-ArrayList world;
-int num_parts = 100;
-AudioAnalyzer audio;
-float[] audiobuffer; 
+AppletLayers layers;
 
 void setup(){
-  size(720, 720, OPENGL);
-  //initialize    
-  Init();
-}
-
-void draw(){ 
-  RefreshCanvas();
-  Update();
-}
-
-void Init(){
-  background(bg);
-  smooth();
+  size(720, 720);
   frameRate(20);
-  //initialize vectors
-  float w = width, h = height;
-  float px, py = 0;
-  world = new ArrayList();
-  for (int i=1;i<num_parts;i++){
-    px = (i * (width/num_parts) - width/2);
-    world.add(new CurvePart(new PVector(px, py), width, height));
-  }
-  //create audio analyzer
-  audio = new AudioAnalyzer(this, "../audio/Physika.wav", num_parts);  
-  //set stroke off
-  noStroke();
-  //set the foreground color with opacity
-  fill(fg, str_op);  
-  audio.Start();
-  audiobuffer = new float[num_parts];
+  layers = new AppletLayers(this);
+  layers.addLayer(new BgDegradeClass(this));
+  layers.addLayer(new CurveLayer(this));
 }
 
-void Update(){
-  audiobuffer = audio.Analyze();
-  //translate to the centre
-  translate(width/2, height/2);  
-  CurvePart pt;
-  for (int i = 0; i < world.size(); i++){
-    pt = (CurvePart)world.get(i);    
-    if (audiobuffer[i] > 0.5){
-      pt.Update(frameCount);
-    }    
-    Render(pt.Point());
-    //println(Arrays.toString(audiobuffer));
-  }
-}
-
-void RefreshCanvas(){
-   
-}
-
-void Render(PVector pt){
-  Grain();
-  ellipse(pt.x, pt.y, 2, 2);   
+void draw(){
 }
 
 void Grain(){
@@ -71,5 +21,23 @@ void Grain(){
 void keyPressed(){
   if (key == 's')
     saveFrame("data/renders/sketch-#####.tif");  
+}
+
+void paint() {
+  // This method MUST be present in your sketch for layers to be rendered!
+  if (layers != null) {
+    layers.paint(this);
+  } else {
+    super.paint();
+  }
+}
+
+void paint(java.awt.Graphics g) {
+  if (layers != null) {
+    layers.paint(this);
+  } 
+  else {
+    super.paint(g);
+  }
 }
 
